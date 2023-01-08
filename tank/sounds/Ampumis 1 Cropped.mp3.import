@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Ampumis 1 Cropped.mp3-15b6845554632e091c8f79317ffadd1f.mp3str"
+
+[deps]
+
+source_file="res://sounds/Ampumis 1 Cropped.mp3"
+dest_files=[ "res://.import/Ampumis 1 Cropped.mp3-15b6845554632e091c8f79317ffadd1f.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scripts/particles.gd" type="Script" id=1]
+
+[sub_resource type="Gradient" id=6]
+offsets = PoolRealArray( 0.435897, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 6 )
+
+[sub_resource type="Curve" id=7]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=8]
+lifetime_randomness = 1.0
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 400.0
+initial_velocity_random = 0.52
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 20.0
+scale_random = 0.5
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 3 )
+
+[node name="wallHit" type="Particles2D"]
+z_index = 2
+emitting = false
+amount = 6
+lifetime = 0.47
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 8 )
+script = ExtResource( 1 )

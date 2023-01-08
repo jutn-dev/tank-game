@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Liikkumis 2 valmis lyhennetty.wav-21a8642ba8696d34d8f1a882ca81f46c.sample"
+
+[deps]
+
+source_file="res://sounds/Liikkumis 2 valmis lyhennetty.wav"
+dest_files=[ "res://.import/Liikkumis 2 valmis lyhennetty.wav-21a8642ba8696d34d8f1a882ca81f46c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

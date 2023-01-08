@@ -1,0 +1,104 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://scripts/player.gd" type="Script" id=1]
+[ext_resource path="res://sprites/layout.png" type="Texture" id=2]
+[ext_resource path="res://sprites/iturret.png" type="Texture" id=3]
+[ext_resource path="res://sounds/Ampumis 1 Cropped.mp3" type="AudioStream" id=4]
+[ext_resource path="res://sprites/light.png" type="Texture" id=5]
+
+[sub_resource type="Gradient" id=8]
+offsets = PoolRealArray( 0, 0.544872, 1 )
+colors = PoolColorArray( 1.62, 0.76, 0.1, 1, 2.05, 0.42, 0.05, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=9]
+gradient = SubResource( 8 )
+
+[sub_resource type="Curve" id=5]
+_data = [ Vector2( 0.452514, 0.9 ), 0.0, 0.0214115, 0, 0, Vector2( 1, 0 ), -2.44091, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=10]
+curve = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+lifetime_randomness = 0.5
+flag_disable_z = true
+spread = 96.68
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 252.89
+initial_velocity_random = 0.43
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.02
+scale_random = 0.03
+scale_curve = SubResource( 10 )
+color = Color( 0.74902, 0.65098, 0.388235, 1 )
+color_initial_ramp = SubResource( 9 )
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10.4802, 10.0455 )
+
+[node name="tank" type="KinematicBody2D" groups=["player"]]
+scale = Vector2( 2, 2 )
+collision_layer = 2
+collision_mask = 23
+script = ExtResource( 1 )
+shoot_time = 0.3
+
+[node name="sprite" type="Sprite" parent="."]
+rotation = 1.5708
+texture = ExtResource( 2 )
+
+[node name="gun" type="Position2D" parent="sprite"]
+position = Vector2( 5.42402e-06, 1.5 )
+rotation = -1.5708
+
+[node name="Sprite" type="Sprite" parent="sprite/gun"]
+position = Vector2( 19, 0 )
+rotation = 1.57079
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 3 )
+
+[node name="shootPoint" type="Position2D" parent="sprite/gun/Sprite"]
+position = Vector2( 0.000114441, -18.1818 )
+rotation = -1.57079
+
+[node name="shootParticles2D" type="Particles2D" parent="sprite/gun/Sprite/shootPoint"]
+scale = Vector2( 0.5, 0.5 )
+emitting = false
+amount = 15
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 7 )
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+scale = Vector2( 1.33879, 2.61578 )
+shape = SubResource( 1 )
+
+[node name="bulletDetector" type="Area2D" parent="."]
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bulletDetector"]
+modulate = Color( 0.0196078, 1, 0.0117647, 1 )
+position = Vector2( -0.250001, -0.0676012 )
+scale = Vector2( 1.50509, -2.84096 )
+shape = SubResource( 2 )
+
+[node name="shootPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[node name="Light2D" type="Light2D" parent="."]
+scale = Vector2( 4.6, 5.08 )
+texture = ExtResource( 5 )
+texture_scale = 0.24
+color = Color( 0.662745, 0.94902, 0.937255, 1 )
+energy = 2.69
+shadow_enabled = true
+shadow_gradient_length = 3.0
+shadow_filter = 4
+
+[connection signal="body_entered" from="bulletDetector" to="." method="_on_bulletDetector_body_entered"]
